@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Hub - Your Ultimate Anime Resource</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862030588176348" 
+            crossorigin="anonymous"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --accent-color: #ffa502;
+            --text-light: #ffffff;
+            --text-dark: #2f3542;
+            --bg-light: #f1f2f6;
+            --bg-dark: #2f3542;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(47, 53, 66, 0.8), rgba(47, 53, 66, 0.8)), url('https://images.unsplash.com/photo-1549169035-7c8b28a0f38d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Ad Units */
+        .ad-unit {
+            width: 100%;
+            min-height: 280px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-category {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .sidebar h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .popular-posts {
+            list-style: none;
+        }
+
+        .popular-posts li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .popular-posts a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+
+        .popular-posts a:hover {
+            color: var(--primary-color);
+        }
+
+        .popular-posts img {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Anime<span style="color: var(--accent-color)">Hub</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#blogs">Anime Blogs</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to Anime Hub</h1>
+        <p>Your ultimate destination for everything anime - reviews, news, recommendations, and more!</p>
+        <a href="#blogs" class="cta-button">Explore Blogs</a>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Ad Unit 1 -->
+        <div class="ad-unit">
+            <ins class="adsbygoogle" 
+                 style="display:block" 
+                 data-ad-client="ca-pub-6862030588176348" 
+                 data-ad-slot="1234567890" 
+                 data-ad-format="auto" 
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Blog Section -->
+        <section id="blogs">
+            <h2>Latest Anime Blogs</h2>
+            
+            <!-- Ad Unit 2 -->
+            <div class="ad-unit">
+                <ins class="adsbygoogle" 
+                     style="display:block" 
+                     data-ad-client="ca-pub-6862030588176348" 
+                     data-ad-slot="0987654321" 
+                     data-ad-format="auto" 
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime1/400/200.jpg" alt="Anime Review" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">Reviews</div>
+                        <h3 class="blog-title">Attack on Titan Final Season Review</h3>
+                        <p class="blog-excerpt">A comprehensive review of the final season of one of the most popular anime series...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime2/400/200.jpg" alt="Anime News" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">News</div>
+                        <h3 class="blog-title">New Studio Ghibli Film Announced</h3>
+                        <p class="blog-excerpt">Exciting news from the legendary animation studio with details about their upcoming project...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime3/400/200.jpg" alt="Recommendations" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">Recommendations</div>
+                        <h3 class="blog-title">Top 10 Underrated Anime You Should Watch</h3>
+                        <p class="blog-excerpt">Discover hidden gems in the anime world that deserve more attention than they get...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 4 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime4/400/200.jpg" alt="Anime Analysis" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">Analysis</div>
+                        <h3 class="blog-title">Understanding Character Development in Jujutsu Kaisen</h3>
+                        <p class="blog-excerpt">Deep dive into how characters evolve throughout the series and what makes them compelling...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 5 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime5/400/200.jpg" alt="Anime Industry" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">Industry</div>
+                        <h3 class="blog-title">The Future of Anime Production After COVID-19</h3>
+                        <p class="blog-excerpt">How the pandemic affected anime production and what changes we can expect moving forward...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 6 -->
+                <article class="blog-card">
+                    <img src="https://picsum.photos/seed/anime6/400/200.jpg" alt="Anime History" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-category">History</div>
+                        <h3 class="blog-title">Evolution of Mecha Anime: From Gundam to Pacific Rim</h3>
+                        <p class="blog-excerpt">Tracing the development of mecha genre across decades and its influence on global media...</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Ad Unit 3 -->
+            <div class="ad-unit">
+                <ins class="adsbygoogle" 
+                     style="display:block" 
+                     data-ad-client="ca-pub-6862030588176348" 
+                     data-ad-slot="5678901234" 
+                     data-ad-format="auto" 
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Popular Posts</h3>
+            <ul class="popular-posts">
+                <li>
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/popular1/120/80.jpg" alt="Popular Post">
+                        <span>Why Demon Slayer Became a Global Phenomenon</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/popular2/120/80.jpg" alt="Popular Post">
+                        <span>Best Anime Soundtracks of All Time</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/popular3/120/80.jpg" alt="Popular Post">
+                        <span>Upcoming Spring 2023 Anime Preview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/popular4/120/80.jpg" alt="Popular Post">
+                        <span>The Art of Anime Voice Acting</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Anime Hub</h3>
+                <p>Dedicated to providing the latest anime news, reviews, and insights for fans worldwide.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Anime Blogs</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Archives</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Recommendations</a></li>
+                    <li><a href="#">Analysis</a></li>
+                    <li><a href="#">Industry News</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Anime Hub. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Additional Scripts -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize AdSense after DOM loads
+        window.addEventListener('load', () => {
+            // This is handled automatically by the AdSense script
+            console.log('Page loaded, AdSense initialized');
+        });
+    </script>
+</body>
+</html>
